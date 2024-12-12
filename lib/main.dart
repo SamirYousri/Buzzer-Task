@@ -29,8 +29,8 @@ class AuthTask extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/login',
         routes: {
-          '/login': (context) => const LoginScreen(),
-          '/register': (context) => const RegisterScreen(),
+          '/login': (context) => LoginScreen(),
+          '/register': (context) => RegisterScreen(),
         },
       ),
     );

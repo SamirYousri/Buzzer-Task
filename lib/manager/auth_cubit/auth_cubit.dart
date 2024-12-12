@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepository authRepository;
+  bool isPasswordVisible = false;
 
   AuthCubit(this.authRepository) : super(AuthInitial());
 
@@ -25,5 +26,10 @@ class AuthCubit extends Cubit<AuthState> {
     } catch (e) {
       emit(AuthError(e.toString()));
     }
+  }
+
+  void togglePasswordVisibility() {
+    isPasswordVisible = !isPasswordVisible;
+    emit(AuthPasswordVisibilityToggled(isPasswordVisible));
   }
 }

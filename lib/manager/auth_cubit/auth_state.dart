@@ -11,3 +11,9 @@ class AuthError extends AuthState {
 
   AuthError(this.error);
 }
+
+class AuthPasswordVisibilityToggled extends AuthState {
+  final bool isPasswordVisible;
+
+  AuthPasswordVisibilityToggled(this.isPasswordVisible);
+}

@@ -7,20 +7,12 @@ import 'package:auth_task/views/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
 
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  bool _isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -79,25 +71,27 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontSize: 20,
                   ),
                 ),
-                CustomTextField(
-                  controller: passwordController,
-                  hintText: 'Password',
-                  isPassword: true,
-                  obscureText: _isPasswordVisible, // Using the toggle state
-                  onIconPressed: () {
-                    setState(() {
-                      _isPasswordVisible =
-                          !_isPasswordVisible; // Toggle password visibility
-                    });
-                  },
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    if (value.length < 6) {
-                      return 'Password must be at least 6 characters';
-                    }
-                    return null;
+                BlocBuilder<AuthCubit, AuthState>(
+                  builder: (context, state) {
+                    final cubit = context.read<AuthCubit>();
+                    return CustomTextField(
+                      controller: passwordController,
+                      hintText: 'Password',
+                      isPassword: true,
+                      obscureText: !cubit.isPasswordVisible,
+                      onIconPressed: () {
+                        cubit.togglePasswordVisibility();
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your password';
+                        }
+                        if (value.length < 6) {
+                          return 'Password must be at least 6 characters';
+                        }
+                        return null;
+                      },
+                    );
                   },
                 ),
                 const SizedBox(
