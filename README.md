@@ -1,7 +1,7 @@
 # Authentication Task
 
 ## Overview
-This project is an authentication application built using Flutter. It focuses on implementing core features like user registration, login, and logout using **Firebase Authentication**, and follows the **MVVM architecture** with **Cubit** for state management.
+This project is an authentication application built using Flutter. It focuses on implementing core features like user registration, login using **Firebase Authentication**, and follows the **MVVM architecture** with **Cubit** for state management.
 
 ---
 
