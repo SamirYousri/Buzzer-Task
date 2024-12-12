@@ -1,16 +1,21 @@
-# auth_task
+# Authentication Task
 
-A new Flutter project.
+## Overview
+This project is an authentication application built using Flutter. It focuses on implementing core features like user registration, login, and logout using **Firebase Authentication**, and follows the **MVVM architecture** with **Cubit** for state management.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Features
+- **User Registration**: Allows users to register with their email and password.
+- **Login**: Authenticates users securely via Firebase.
+- **Logout**: Provides a simple way to log out of the application.
+- **State Management**: Utilizes Cubit for efficient state handling.
+- **MVVM Architecture**: Ensures a clean and scalable codebase.
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Demo Video
+Watch the app in action:
+[Authentication Task Demo](https://drive.google.com/file/d/1o-ob_kDNhTZ5uLgd6gMuTpbDYvJHTeVm/view?usp=drivesdk)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
