@@ -1,4 +1,7 @@
-import 'package:auth_task/core/constants.dart';
+// ignore_for_file: use_super_parameters
+
+import 'package:auth_task/core/utils/app_colors.dart';
+import 'package:auth_task/core/utils/text_style.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -28,7 +31,7 @@ class CustomTextField extends StatelessWidget {
         obscureText: isPassword ? obscureText : false,
         decoration: InputDecoration(
           hintText: hintText,
-          hintStyle: AppTextStyles.hintStyle,
+          hintStyle: AppTextStyles.textStyle14,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),

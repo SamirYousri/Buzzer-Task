@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:auth_task/core/utils/text_style.dart';
 import 'package:auth_task/manager/auth_cubit/auth_cubit.dart';
 import 'package:auth_task/manager/auth_cubit/auth_state.dart';
 import 'package:auth_task/views/widgets/custom_button.dart';
@@ -28,14 +29,12 @@ class RegisterScreen extends StatelessWidget {
               ),
               const Text(
                 "Create your account",
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                style: AppTextStyles.textStyle45,
               ),
               const SizedBox(height: 40),
               const Text(
                 "Email",
-                style: TextStyle(
-                  fontSize: 20,
-                ),
+                style: AppTextStyles.textStyle20,
               ),
               CustomTextField(
                 controller: emailController,
@@ -58,9 +57,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               const Text(
                 "Password",
-                style: TextStyle(
-                  fontSize: 20,
-                ),
+                style: AppTextStyles.textStyle20,
               ),
               BlocBuilder<AuthCubit, AuthState>(
                 builder: (context, state) {
@@ -92,7 +89,10 @@ class RegisterScreen extends StatelessWidget {
                 listener: (context, state) {
                   if (state is AuthSuccess) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Registration Successful')),
+                      const SnackBar(
+                          content: Text(
+                        'Registration Successful',
+                      )),
                     );
                     Navigator.pop(context);
                   } else if (state is AuthError) {
@@ -119,17 +119,17 @@ class RegisterScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("you have an account?"),
+                  const Text(
+                    "you have an account?",
+                    style: AppTextStyles.textStyle14,
+                  ),
                   TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/login');
                     },
                     child: const Text(
                       "Login",
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),
+                      style: AppTextStyles.textStyle15,
                     ),
                   ),
                 ],

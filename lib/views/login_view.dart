@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:auth_task/core/utils/text_style.dart';
 import 'package:auth_task/manager/auth_cubit/auth_cubit.dart';
 import 'package:auth_task/manager/auth_cubit/auth_state.dart';
 import 'package:auth_task/views/widgets/custom_button.dart';
@@ -32,21 +33,17 @@ class LoginScreen extends StatelessWidget {
                 const Text(
                   textAlign: TextAlign.start,
                   "Let's Sign you in.",
-                  style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
+                  style: AppTextStyles.textStyle45,
                 ),
                 const SizedBox(height: 20),
                 const Text(
                   "Welcome back. \nYou've been missed!",
-                  style: TextStyle(
-                    fontSize: 40,
-                  ),
+                  style: AppTextStyles.textStyle40,
                 ),
                 const SizedBox(height: 40),
                 const Text(
                   "Email",
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
+                  style: AppTextStyles.textStyle20,
                 ),
                 CustomTextField(
                   controller: emailController,
@@ -67,9 +64,7 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 const Text(
                   "Password",
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
+                  style: AppTextStyles.textStyle20,
                 ),
                 BlocBuilder<AuthCubit, AuthState>(
                   builder: (context, state) {
@@ -130,17 +125,17 @@ class LoginScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Don't have an account?"),
+                    const Text(
+                      "Don't have an account?",
+                      style: AppTextStyles.textStyle14,
+                    ),
                     TextButton(
                       onPressed: () {
                         Navigator.pushNamed(context, '/register');
                       },
                       child: const Text(
                         "Register",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
+                        style: AppTextStyles.textStyle15,
                       ),
                     ),
                   ],
