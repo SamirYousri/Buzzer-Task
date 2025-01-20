@@ -1,7 +1,7 @@
 // ignore_for_file: use_super_parameters
 
-import 'package:auth_task/core/utils/app_colors.dart';
-import 'package:auth_task/core/utils/text_style.dart';
+import 'package:auth_task/core/utils/styles/app_colors.dart';
+import 'package:auth_task/core/utils/styles/text_style.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -11,6 +11,8 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool obscureText;
   final VoidCallback? onIconPressed;
+  final TextInputType? keyboardType;
+  final bool? isEnabled;
   const CustomTextField({
     Key? key,
     required this.controller,
@@ -19,6 +21,8 @@ class CustomTextField extends StatelessWidget {
     this.validator,
     this.obscureText = false,
     this.onIconPressed,
+    this.keyboardType,
+    this.isEnabled,
   }) : super(key: key);
 
   @override
@@ -26,22 +30,21 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: TextFormField(
+        enabled: isEnabled,
+        style: TextStyle(color: AppColors.whiteTextColor),
+        keyboardType: keyboardType,
+        cursorColor: AppColors.whiteTextColor,
         validator: validator,
         controller: controller,
         obscureText: isPassword ? obscureText : false,
         decoration: InputDecoration(
-          hintText: hintText,
-          hintStyle: AppTextStyles.textStyle14,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0),
-            borderSide: const BorderSide(
-              color: AppColors.primaryColor,
-              width: 2.0,
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: AppColors.whiteTextColor,
             ),
           ),
+          hintText: hintText,
+          hintStyle: AppTextStyles.textStyle14,
           suffixIcon: isPassword
               ? IconButton(
                   icon: Icon(

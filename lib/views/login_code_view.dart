@@ -6,23 +6,23 @@ import 'package:auth_task/views/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class LoginCodeView extends StatelessWidget {
+  LoginCodeView({super.key});
 
-  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController phoneCodeController = TextEditingController();
+  final TextEditingController staticPhoneController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<OtpCubit, OtpState>(
       listener: (context, state) {
-        if (state is OtpCodeSent) {
-          Navigator.pushNamed(context, '/loginCode');
+        if (state is OtpVerified) {
+          Navigator.pushNamed(context, '/home');
         } else if (state is OtpError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.message)),
           );
-          print(state.message);
         }
       },
       child: Scaffold(
@@ -53,31 +53,35 @@ class LoginScreen extends StatelessWidget {
                         children: [
                           const SizedBox(height: 20),
                           Text(
-                            'Sign In',
+                            'Login Code',
                             style: AppTextStyles.textStyle20,
                           ),
                           const SizedBox(height: 200),
                           const Text(
-                            "Welcome!",
+                            "Login by OTP",
                             style: AppTextStyles.textStyle20,
                           ),
                           const SizedBox(height: 10),
                           const Text(
-                            "Please enter your phone number to continue using our app",
+                            "Enter the authentication code we sent to this number",
                             style: AppTextStyles.textStyle16,
                           ),
                           const SizedBox(height: 10),
                           CustomTextField(
+                            controller: staticPhoneController,
+                            hintText: '0123456789',
+                            isEnabled: false,
+                          ),
+                          CustomTextField(
                             keyboardType: TextInputType.phone,
-                            controller: phoneController,
-                            hintText: 'Phone Number',
+                            controller: phoneCodeController,
+                            hintText: 'Login Code',
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your phone';
+                                return 'Please enter your phone code';
                               }
-                              if (!RegExp(r"^\+[1-9][0-9]{1,14}$")
-                                  .hasMatch(value)) {
-                                return 'Please enter a valid phone number';
+                              if (!RegExp(r"^[0-9]{6}$").hasMatch(value)) {
+                                return 'Please enter a valid phone code';
                               }
                               return null;
                             },
@@ -98,11 +102,11 @@ class LoginScreen extends StatelessWidget {
                             return const CircularProgressIndicator();
                           }
                           return CustomButton(
-                            text: 'NEXT',
+                            text: 'SUBMIT',
                             onPressed: () {
                               if (_formKey.currentState?.validate() ?? false) {
-                                final phone = phoneController.text;
-                                context.read<OtpCubit>().sendOtp(phone);
+                                final otpCode = phoneCodeController.text;
+                                context.read<OtpCubit>().verifyOtp(otpCode);
                               }
                             },
                           );

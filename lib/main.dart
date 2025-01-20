@@ -1,6 +1,11 @@
-import 'package:auth_task/manager/auth_cubit/auth_cubit.dart';
+import 'package:auth_task/core/utils/styles/theme_manager.dart';
+import 'package:auth_task/manager/auth_cubit/otp_cubit.dart';
+import 'package:auth_task/views/home_view.dart';
+import 'package:auth_task/views/login_code_view.dart';
 import 'package:auth_task/views/login_view.dart';
-import 'package:auth_task/views/register_view.dart';
+import 'package:auth_task/views/splash_view.dart';
+import 'package:auth_task/views/widgets/product_details.dart';
+import 'package:auth_task/views/widgets/supplier_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,15 +27,20 @@ class AuthTask extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AuthCubit(authRepository),
+          create: (context) => OtpCubit(),
         ),
       ],
       child: MaterialApp(
+        theme: ThemeManager.getAppTheme(),
         debugShowCheckedModeBanner: false,
-        initialRoute: '/login',
+        initialRoute: '/splash',
         routes: {
           '/login': (context) => LoginScreen(),
-          '/register': (context) => RegisterScreen(),
+          '/splash': (context) => SplashView(),
+          '/loginCode': (context) => LoginCodeView(),
+          '/home': (context) => HomeView(),
+          '/supplierProducts': (context) => SupplierProducts(),
+          '/productDetails': (context) => ProductDetails(),
         },
       ),
     );
