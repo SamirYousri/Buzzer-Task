@@ -1,6 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 import 'package:auth_task/core/utils/styles/text_style.dart';
-import 'package:auth_task/manager/auth_cubit/otp_cubit.dart';
+import 'package:auth_task/manager/otp_cubit/otp_cubit.dart';
 import 'package:auth_task/views/widgets/custom_button.dart';
 import 'package:auth_task/views/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';

@@ -3,8 +3,20 @@ import 'package:auth_task/core/utils/styles/text_style.dart';
 import 'package:flutter/material.dart';
 
 class ItemProduct extends StatelessWidget {
-  const ItemProduct({super.key});
-
+  const ItemProduct(
+      {super.key,
+      required this.nameProduct,
+      required this.namePlace,
+      required this.typePlace,
+      required this.price,
+      required this.oldPrice,
+      required this.image});
+  final String nameProduct;
+  final String namePlace;
+  final String typePlace;
+  final String price;
+  final String oldPrice;
+  final String image;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -49,10 +61,9 @@ class ItemProduct extends StatelessWidget {
                         )
                       ],
                     ),
-                    Text('Butter Sandwish',
-                        style: AppTextStyles.textStyle16_bold),
+                    Text(nameProduct, style: AppTextStyles.textStyle16_bold),
                     Text(
-                      'Par Lane Hotle',
+                      namePlace,
                       style: AppTextStyles.textStyle14
                           .copyWith(color: AppColors.hintTextColor),
                     ),
@@ -60,17 +71,17 @@ class ItemProduct extends StatelessWidget {
                       spacing: 5,
                       children: [
                         Text(
-                          'Resturant',
+                          typePlace,
                           style: AppTextStyles.textStyle14
                               .copyWith(color: AppColors.redColor),
                         ),
                         Spacer(),
                         Text(
-                          'SAR 89',
+                          oldPrice,
                           style: AppTextStyles.textStyleLineThrough12,
                         ),
                         Text(
-                          'SAR 79',
+                          price,
                           style: AppTextStyles.textStyle12.copyWith(
                             color: AppColors.primaryColor,
                             fontWeight: FontWeight.bold,
@@ -87,7 +98,7 @@ class ItemProduct extends StatelessWidget {
               right: 0,
               left: 0,
               child: Image.asset(
-                'assets/images/Mask group.png',
+                image,
               ),
             ),
           ],
