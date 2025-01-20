@@ -15,6 +15,9 @@ class LoginCodeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final phoneNumber = ModalRoute.of(context)!.settings.arguments as String? ??
+        '+201004757558';
+
     return BlocListener<OtpCubit, OtpState>(
       listener: (context, state) {
         if (state is OtpVerified) {
@@ -69,7 +72,7 @@ class LoginCodeView extends StatelessWidget {
                           const SizedBox(height: 10),
                           CustomTextField(
                             controller: staticPhoneController,
-                            hintText: '0123456789',
+                            hintText: phoneNumber,
                             isEnabled: false,
                           ),
                           CustomTextField(

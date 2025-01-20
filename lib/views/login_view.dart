@@ -103,6 +103,9 @@ class LoginScreen extends StatelessWidget {
                               if (_formKey.currentState?.validate() ?? false) {
                                 final phone = phoneController.text;
                                 context.read<OtpCubit>().sendOtp(phone);
+
+                                Navigator.pushNamed(context, '/loginCode',
+                                    arguments: phone);
                               }
                             },
                           );
