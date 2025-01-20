@@ -17,7 +17,8 @@ class LoginScreen extends StatelessWidget {
     return BlocListener<OtpCubit, OtpState>(
       listener: (context, state) {
         if (state is OtpCodeSent) {
-          Navigator.pushNamed(context, '/loginCode');
+          final phone = phoneController.text;
+          Navigator.pushNamed(context, '/loginCode', arguments: phone);
         } else if (state is OtpError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.message)),
@@ -103,9 +104,6 @@ class LoginScreen extends StatelessWidget {
                               if (_formKey.currentState?.validate() ?? false) {
                                 final phone = phoneController.text;
                                 context.read<OtpCubit>().sendOtp(phone);
-
-                                Navigator.pushNamed(context, '/loginCode',
-                                    arguments: phone);
                               }
                             },
                           );

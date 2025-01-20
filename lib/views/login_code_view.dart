@@ -15,8 +15,7 @@ class LoginCodeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final phoneNumber = ModalRoute.of(context)!.settings.arguments as String? ??
-        '+201004757558';
+    final phoneNumber = ModalRoute.of(context)!.settings.arguments as String;
 
     return BlocListener<OtpCubit, OtpState>(
       listener: (context, state) {
