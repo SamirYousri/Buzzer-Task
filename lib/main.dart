@@ -30,7 +30,7 @@ class AuthTask extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeManager.getAppTheme(),
         debugShowCheckedModeBanner: false,
-        initialRoute: '/home',
+        initialRoute: '/splash',
         routes: {
           '/login': (context) => LoginScreen(),
           '/splash': (context) => SplashView(),
